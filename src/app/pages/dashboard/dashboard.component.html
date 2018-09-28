@@ -72,7 +72,7 @@
           <i class="fas fa-film"></i>
           Listado de Peliculas
           <div class="float-right">
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#añadirModal">
               <i class="fas fa-plus"></i>
               Añadir
             </button>
@@ -108,7 +108,7 @@
                     <span class="fa fa-star"></span>
                   </td>
                   <td>
-                    <a href="#" class="badge badge-primary mr-2">Actualizar</a>
+                    <a href="#" class="badge badge-primary mr-2" data-toggle="modal" data-target="#actualizarModal">Actualizar</a>
                     <a href="#" class="badge badge-danger">Eliminar</a>
                   </td>
                 </tr>
@@ -141,6 +141,143 @@
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
 </a>
+
+<!-- Añadir Modal-->
+<div class="modal fade" id="añadirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir película</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="container">
+        <br />
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required"
+                    autofocus="autofocus">
+                  <label for="firstName">Nombre</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                  <label for="lastName">Anio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+              <label for="inputEmail">Director</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                  <label for="inputPassword">Genero</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password"
+                    required="required">
+                  <label for="confirmPassword">Calificacion</label>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" lang="es">
+              <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <a class="btn btn-primary" href="login.html">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Actualizar Modal-->
+<div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar película</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="container">
+        <br />
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required"
+                    autofocus="autofocus">
+                  <label for="firstName">Nombre</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                  <label for="lastName">Anio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+              <label for="inputEmail">Director</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                  <label for="inputPassword">Genero</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password"
+                    required="required">
+                  <label for="confirmPassword">Calificacion</label>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" lang="es">
+              <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <a class="btn btn-primary" href="login.html">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
