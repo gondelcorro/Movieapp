@@ -7,7 +7,7 @@ import { PeliculaComponent } from './pages/dashboard/pelicula/pelicula.component
 import { UsuarioComponent } from './pages/dashboard/usuario/usuario.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  {path: '', redirectTo: 'app', pathMatch: 'full' },
   {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent},
   {path:'dashboard', component:DashboardComponent, children:[
@@ -18,6 +18,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+  exports: [RouterModule],
+  })
 export class AppRoutingModule { }
