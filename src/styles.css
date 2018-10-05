@@ -1,3 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*SI NO AGREGO UN TEMA X DEFECTO SALE UN WARINING EN LA CONSOLA*/
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/*AGREGAR ESTILO PARA EL angular-star-rating*/
+@import '~css-star-rating/css/star-rating.css';

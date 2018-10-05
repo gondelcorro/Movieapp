@@ -1,5 +1,15 @@
-.checked {
-    color: orange;
+/* mouse over link */
+#badgeImg:hover {
+    background-color:darkgray;
+}
+
+#badgeAct:hover {
+    
+    background-color:mediumblue;
+}
+
+#badgeEli:hover {
+    background-color:firebrick;
 }
 
 .custom-file-input ~ .custom-file-label::after {

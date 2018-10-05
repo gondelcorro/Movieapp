@@ -33,43 +33,20 @@
 
 <br /> <br />
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-lg-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <img class="card-img-top" src="assets/img/portfolio/cake.png" alt="Card image cap">
+<div class="gridCards">
+  <div div class="row justify-content-center" *ngFor="let peli of listPelisConImg ; index as index">
+    <div class="col-6 col-xs-4 col-md-4 col-lg-4">
+      <div class="card mb-3 mr-3" style="width: 16rem;">
+        <img class="card-img-top" [src]="peli.imagen" alt="imagen pelicula">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <div class='starrr' id='star1'></div>
-          <div>
-            <span class='your-choice-was' style='display: none;'>
-              Tu puntuacion es: <span class='choice'></span>.
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <img class="card-img-top" src="assets/img/portfolio/game.png" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <div class='starrr' id='star2'></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="card mb-3" style="width: 18rem;">
-        <img class="card-img-top" src="assets/img/portfolio/cabin.png" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <div class='starrr' id='star3'></div>
+          <h5 class="card-title">{{peli.pelicula.nombre}}</h5>
+          <p class="card-text">
+            <span>Director: {{peli.pelicula.director}}</span><br />
+            <span>Fecha: {{peli.pelicula.fecha}}</span><br />
+            <span>Genero: {{peli.pelicula.genero}}</span>
+          </p>
+          <star-rating id="star" [starType]='svg' staticColor="ok" speed="noticeable" [hoverEnabled]="true" [rating]="0" (starClickChange)="onClick($event)">
+          </star-rating>
         </div>
       </div>
     </div>

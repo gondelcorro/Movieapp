@@ -1,3 +1,8 @@
-.checked {
-    color: orange;
+/*ESTILO PARA LAS CARDS DE LAS PELIS*/
+.gridCards {
+    display: flex;
+    flex-flow: row wrap;
+}
+.item {
+    width: 25%;
 }

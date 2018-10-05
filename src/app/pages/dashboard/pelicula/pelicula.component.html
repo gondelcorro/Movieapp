@@ -4,7 +4,7 @@
     <i class="fas fa-film"></i>
     Listado de Peliculas
     <div class="float-right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#añadirModal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#añadirModal" (click)="limpiarControles()">
         <i class="fas fa-plus"></i>
         Añadir
       </button>
@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Año</th>
+            <th>Fecha</th>
             <th>Director</th>
             <th>Género</th>
             <th>Calificación</th>
@@ -26,24 +26,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
+          <tr *ngFor="let peli of listaPeliculas">
+            <td>{{peli.nombre}}</td>
+            <td>{{peli.fecha}}</td>
+            <td>{{peli.director}}</td>
+            <td>{{peli.genero}}</td>
             <td>
-              <span class="fa fa-star checked"></span>
-              <span style="margin-left: 2px">1</span>
+              <star-rating id="star" [starType]='svg' staticColor="ok" [readOnly]="true" [rating]="peli.calificacion">
+              </star-rating>
             </td>
             <td>
-              <a href="#" class="badge badge-light" data-toggle="modal" data-target="#imagenModal">
+              <span id="badgeImg" class="badge badge-light" data-toggle="modal" data-target="#imagenModal" style="cursor: pointer" (click)="mostrarImagen(peli)">
                 <i class="fas fa-search"></i>
                 Ver imagen
-              </a>
+              </span>
             </td>
             <td>
-              <a href="#" class="badge badge-primary mr-2" data-toggle="modal" data-target="#actualizarModal">Actualizar</a>
-              <a href="#" class="badge badge-danger">Eliminar</a>
+              <span id="badgeAct" class="badge badge-primary mr-2" data-toggle="modal" data-target="#actualizarModal"
+                style="cursor: pointer">Actualizar</span>
+              <span id="badgeEli" class="badge badge-danger" (click)="eliminar(peli)" style="cursor: pointer">Eliminar</span>
             </td>
           </tr>
         </tbody>
@@ -55,176 +56,156 @@
 
 <!-- Añadir Modal-->
 <div class="modal fade" id="añadirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Añadir película</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="container">
-          <br />
-          <form>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required"
-                      autofocus="autofocus">
-                    <label for="firstName">Nombre</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-                    <label for="lastName">Anio</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-                <label for="inputEmail">Director</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                    <label for="inputPassword">Genero</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password"
-                      required="required">
-                    <label for="confirmPassword">Calificacion</label>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" lang="es">
-                <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Aceptar</a>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir película</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
-    </div>
-  </div>
-  
-  <!-- Actualizar Modal-->
-  <div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualizar película</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="container">
-          <br />
-          <form>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required"
-                      autofocus="autofocus">
-                    <label for="firstName">Nombre</label>
-                  </div>
+      <div class="container">
+        <br />
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <!--PARA EL ngModel ES NECESARIO Q EL TAG TENGA UN name-->
+                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required"
+                    autofocus="autofocus" [(ngModel)]="nombre" name="nombre">
+                  <label for="firstName">Nombre</label>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-                    <label for="lastName">Anio</label>
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="date" id="idDate" name="bday"  class="form-control" required="required" [(ngModel)]="fecha" name="fecha" >
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-                <label for="inputEmail">Director</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                    <label for="inputPassword">Genero</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password"
-                      required="required">
-                    <label for="confirmPassword">Calificacion</label>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" lang="es">
-                <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Aceptar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Imagen Modal-->
-  <div class="modal fade" id="imagenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Titulo pelicula</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
           </div>
-          <div class="container" style="margin-top: 15px; margin-bottom: 15px">
-            <img class="card-img-top" src="assets/img/portfolio/cake.png" alt="Card image cap">
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required"
+                [(ngModel)]="director" name="director">
+              <label for="inputEmail">Director</label>
+            </div>
           </div>
-          <!-- <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          </div> -->
-        </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"
+                    [(ngModel)]="genero" name="genero">
+                  <label for="inputPassword">Genero</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required"
+                    [(ngModel)]="calificacion" name="calificacion">
+                  <label for="confirmPassword">Calificacion</label>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" lang="es" (change)="selectFile($event)">
+              <label class="custom-file-label" for="customFile">{{labelFile}}</label>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
-  
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <a class="btn btn-primary" data-dismiss="modal" (click)="agregar()">Aceptar</a>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Actualizar Modal-->
+<div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar película</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="container">
+        <br />
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="firstName1" class="form-control" placeholder="First name" required="required"
+                    autofocus="autofocus">
+                  <label for="firstName">Nombre</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="lastName1" class="form-control" placeholder="Last name" required="required">
+                  <label for="lastName">Anio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required="required">
+              <label for="inputEmail">Director</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required="required">
+                  <label for="inputPassword">Genero</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="confirmPassword1" class="form-control" placeholder="Confirm password"
+                    required="required">
+                  <label for="confirmPassword">Calificacion</label>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile1" lang="es">
+              <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        <a class="btn btn-primary" href="login.html">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Imagen Modal-->
+<div class="modal fade" id="imagenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{nombre}}</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="limpiarControles()">×</span>
+        </button>
+      </div>
+      <div class="container" style="margin-top: 15px; margin-bottom: 15px">
+        <img class="card-img-top"  [src]="imagenData" alt="imagen peli">
+      </div>
+    </div>
+  </div>
+</div>
